@@ -10,14 +10,19 @@
 class GPIO {
 public:
     GPIO(int port, std::string mode ="");
+    ~GPIO(){ if(export_state)close(); }
+
     bool init(int port);
     bool setMode(std::string mode); 
+    bool set(bool state);
+    int get();
+    bool close();
 
-    const std::string IN = "in", OUT = "out";   
+    static const std::string IN, OUT;   
 private:
     int port;
     bool export_state;
+    std::string mode;
 };
-
 
 #endif /* GPIO_HPP */
