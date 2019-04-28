@@ -14,6 +14,7 @@ public:
 
     bool init(int port);
     bool setMode(std::string mode); 
+    std::string getMode() const { return mode; }
     bool set(bool state);
     int get();
     bool close();
