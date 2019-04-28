@@ -1,6 +1,6 @@
 #include "GPIO.hpp"
 
-extern "C" void __sync_synchronize() {} // arm-none-eabi-g++ fix 
+//extern "C" void __sync_synchronize() {} // arm-none-eabi-g++ fix 
 
 const std::string GPIO::IN = "in";
 const std::string GPIO::OUT = "out"; 
@@ -9,7 +9,7 @@ GPIO::GPIO(int port, std::string mode): port{port}, export_state{false}, mode{mo
     export_state = init(port);
 
     if(export_state){
-        if(mode.compare("") && setMode(mode)) std::cerr << "Error : Failed to set GPIO port " << port << " to " << mode << " mode !" << "\n";
+        if(mode.compare("") && !setMode(mode)) std::cerr << "Error : Failed to set GPIO port " << port << " to " << mode << " mode !" << "\n";
     }else{
         std::cerr << "Error : Failed to open GPIO port " << port << "\n";
     }
@@ -34,6 +34,7 @@ bool GPIO::setMode(std::string mode){
 
         out << mode;
         out.flush();
+        this->mode = mode;
 
         return true;
     }else{

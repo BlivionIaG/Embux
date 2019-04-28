@@ -10,19 +10,19 @@ empty:=
 ifeq ($(TARGET),)
 	COMPILER = g++
 else ifeq ($(TARGET),rpi1)
-	COMPILER = arm-none-eabi-g++
-	CFLAGS += --specs=nosys.specs -mcpu=arm1176jzf-s -mfloat-abi=hard -mfpu=vfp -mtune=arm1176jzf-s
+	COMPILER = arm-linux-gnueabihf-g++
+	CFLAGS += -mcpu=arm1176jzf-s -mfloat-abi=hard -mfpu=vfp -mtune=arm1176jzf-s
 	EXTENSION = -rpi1
 else ifeq ($(TARGET),rpi2)
-	COMPILER = arm-none-eabi-g++
-	CFLAGS += --specs=nosys.specs -mcpu=cortex-a7 -mfloat-abi=hard -mfpu=neon-vfpv4 -mtune=cortex-a7
+	COMPILER = arm-linux-gnueabihf-g++
+	CFLAGS += -mcpu=cortex-a7 -mfloat-abi=hard -mfpu=neon-vfpv4 -mtune=cortex-a7
 	EXTENSION = -rpi2
 else ifeq ($(TARGET),rpi3)
-	COMPILER = arm-none-eabi-g++
-	CFLAGS += --specs=nosys.specs -mcpu=cortex-a53 -mfloat-abi=hard -mfpu=neon-fp-armv8 -mneon-for-64bits -mtune=cortex-a53
+	COMPILER = arm-linux-gnueabihf-g++
+	CFLAGS += -mcpu=cortex-a53 -mfloat-abi=hard -mfpu=neon-fp-armv8 -mneon-for-64bits -mtune=cortex-a53
 	EXTENSION = -rpi3
 else ifeq ($(TARGET),beaglebb)
-	COMPILER = arm-none-eabi-g++
+	COMPILER = 
 	CFLAGS += --specs=nosys.specs -mcpu=cortex-a8 -mfloat-abi=hard -mfpu=neon -mtune=cortex-a8
 	EXTENSION = -beaglebb
 endif

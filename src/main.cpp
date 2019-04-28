@@ -6,9 +6,8 @@ int main(int argc, char *argv[]){
         std::cout << argv[i] << "\n";
     }
 
-    GPIO test(1);
+    GPIO test(1, GPIO::OUT);
 
-    test.setMode(GPIO::OUT);
     std::cout << "Current GPIO port 1 state : " << test.get() << "\n";
     test.set(true);
     std::cout << "Current GPIO port 1 state : " << test.get() << "\n";
